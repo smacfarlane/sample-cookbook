@@ -1,0 +1,16 @@
+---
+driver:
+  name: docker
+  privileged: true
+  use_sudo: false
+
+platforms:
+- name: centos-6.7
+
+provisioner:
+  name: chef_zero
+
+suites:
+- name: master
+  run_list:
+    - recipe[sample-cookbook::default]
