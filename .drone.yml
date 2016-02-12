@@ -1,0 +1,6 @@
+build:
+  image: gina/chefdk
+  commands:
+    - eval "$(chef shell-init bash)"
+    - rake
+
