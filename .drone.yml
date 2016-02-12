@@ -1,5 +1,6 @@
 build:
   image: uafgina/chefdk:0.10.0
   commands:
+    - 'eval "$(chef shell-init bash)"'
     - rake
 
