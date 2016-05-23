@@ -1,11 +1,11 @@
 build:
   test: 
-    image: uafgina/chefdk
+    image: uafgina/chefdk:0.12.0
     commands:
       - eval "$(chef shell-init sh)"
       - rake
   upload:
-    image: uafgina/chefdk
+    image: uafgina/chefdk:0.12.0
     commands:
       - eval "$(chef shell-init sh)"
       - berks install
