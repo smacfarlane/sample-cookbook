@@ -8,6 +8,7 @@ node {
   def phases = phases_for('verify')
   sh('pwd')
   sh('ls')
+  sh('delivery job verify lint -l')
   sh('chef exec rake verify')
   input message: 'Accept?', parameters: [[$class: 'BooleanParameterDefinition', defaultValue: false, description: 'Accepting will publish the cookbook to the Chef Server', name: 'Accept']]
 }
