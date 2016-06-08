@@ -4,7 +4,6 @@ stage 'Verify'
 node {
   env.LC_ALL="en_US.UTF-8"
   env.PATH = "/opt/chefdk/bin:${env.PATH}"
-  # git changelog: false, credentialsId: '', poll: false, url: 'https://github.alaska.edu/sdmacfarlane/sample-cookbook'
 
   def phases = phases_for('verify')
   sh("delivery job verify '${phases}' -l")
@@ -14,7 +13,6 @@ stage 'build'
 node {
   env.LC_ALL="en_US.UTF-8"
   env.PATH = "/opt/chefdk/bin:${env.PATH}"
-  # git changelog: false, credentialsId: 'jenkins-ghe-oauth', poll: false, url: 'https://github.alaska.edu/sdmacfarlane/sample-cookbook'
 
   def phases = phases_for('build')
   sh("delivery job build '${phases}' -l")
@@ -27,7 +25,6 @@ node {
 
   env.LC_ALL="en_US.UTF-8"
   env.PATH = "/opt/chefdk/bin:${env.PATH}"
-  # git changelog: false, credentialsId: 'jenkins-ghe-oauth', poll: false, url: 'https://github.alaska.edu/sdmacfarlane/sample-cookbook'
 
   def phases = phases_for('accept')
   sh("delivery job build '${phases}' -l")
