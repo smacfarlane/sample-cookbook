@@ -3,10 +3,10 @@ import groovy.json.JsonSlurper
 stage 'Verify'
 node {
   env.LC_ALL="en_US.UTF-8"
-  env.PATH = "/opt/chefdk/bin:${env.PATH}"
+  env.PATH = "/opt/chefdk/bin:/opt/chefdk/embedded/bin:${env.PATH}"
 
   def phases = phases_for('verify')
-  sh('eval "$(chef shell-init bash)" && rake verify')
+  sh('rake verify')
   input message: 'Accept?', parameters: [[$class: 'BooleanParameterDefinition', defaultValue: false, description: 'Accepting will publish the cookbook to the Chef Server', name: 'Accept']]
 }
 
