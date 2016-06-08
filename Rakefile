@@ -11,11 +11,12 @@ task verify: [:lint, :syntax, :unit]
 
 desc 'Run linting tools -- foodcritic and rubocop'
 task :lint do
-  sh 'foodcritic -X spec .'
+  sh 'chef exec foodcritic -f correctness .'
+  sh 'chef exec rubocop'
 end
 
 task :syntax do
-  sh 'chefstyle'
+  # TODO: Verify version has been bumped
 end
 
 desc 'Run unit tests with ChefSpec'
