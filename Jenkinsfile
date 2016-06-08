@@ -3,7 +3,7 @@ import groovy.json.JsonSlurper
 stage 'Verify'
 node {
   env.LC_ALL="en_US.UTF-8"
-  env.PATH = "/opt/chefdk/bin:/opt/chefdk/embedded/bin:${env.PATH}"
+  env.PATH = "/opt/chefdk/bin:${env.PATH}"
 
   def phases = phases_for('verify')
   sh('rake verify')
