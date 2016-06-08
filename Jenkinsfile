@@ -6,8 +6,7 @@ node {
   env.PATH = "/opt/chefdk/bin:${env.PATH}"
 
   def phases = phases_for('verify')
-  sh('eval "$(chef shell-init bash)"')
-  sh("rake verify")
+  sh('eval "$(chef shell-init bash)" && rake verify')
   input message: 'Accept?', parameters: [[$class: 'BooleanParameterDefinition', defaultValue: false, description: 'Accepting will publish the cookbook to the Chef Server', name: 'Accept']]
 }
 
