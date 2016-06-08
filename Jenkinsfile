@@ -6,7 +6,8 @@ node {
   env.PATH = "/opt/chefdk/bin:${env.PATH}"
 
   def phases = phases_for('verify')
-  sh("delivery job verify '${phases}' -l")
+  sh("rake verify")
+  input message: 'Accept?', parameters: [[$class: 'BooleanParameterDefinition', defaultValue: false, description: 'Accepting will publish the cookbook to the Chef Server', name: 'Accept']]
 }
 
 stage 'build'
@@ -15,19 +16,15 @@ node {
   env.PATH = "/opt/chefdk/bin:${env.PATH}"
 
   def phases = phases_for('build')
-  sh("delivery job build '${phases}' -l")
 }
 
 stage 'accept'
 
 node {
-  input message: 'Accept?', parameters: [[$class: 'BooleanParameterDefinition', defaultValue: false, description: 'Accepting will publish the cookbook to the Chef Server', name: 'Accept']]
-
   env.LC_ALL="en_US.UTF-8"
   env.PATH = "/opt/chefdk/bin:${env.PATH}"
 
   def phases = phases_for('accept')
-  sh("delivery job build '${phases}' -l")
 }
 
 def phases_for(String stage) {

@@ -1,12 +1,21 @@
-task default: :accept
+task default: :verify
 
-desc 'Run all acceptance tests'
-task accept: [:lint, :unit]
+desc 'Verify cookbook'
+task verify: [:lint, :syntax, :unit]
+
+# desc 'Build cookbook'
+# task build: [:lint, :syntax, :unit, :security, :quality, :publish]
+#
+# desc 'Accept cookbook'
+# task acceptance: [:provision, :deploy, :smoke, :functional]
 
 desc 'Run linting tools -- foodcritic and rubocop'
 task :lint do
   sh 'foodcritic -X spec .'
-  sh 'rubocop'
+end
+
+task :syntax do
+  sh 'chefstyle'
 end
 
 desc 'Run unit tests with ChefSpec'
